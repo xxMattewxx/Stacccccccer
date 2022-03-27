@@ -1,0 +1,5 @@
+name: NFTWorldsStacccccccer # the plugins name as it should appear in the plugin list /pl
+version: 1.0 # the plugin's version
+author: Matt
+main: com.nftworlds.stacccccccer.MainClass
+api-version: 1.17 # the version of the API you want to use, required starting with 1.13

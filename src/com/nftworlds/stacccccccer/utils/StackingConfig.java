@@ -7,6 +7,7 @@ import java.util.HashSet;
 
 public class StackingConfig {
     private HashSet<EntityType> stackableTypes = new HashSet<>();
+    private boolean voidAboveStackLimitMobs; //if new entities should be voided if they'd stack above stack limit
     private int maxStackCount; //max number of mobs in a single entity
     private int schedulerTiming; //ticks between stack clearing
     private double stackDistance; //max pythagorean distance for stacking of in world mobs (in blocks)
@@ -20,6 +21,7 @@ public class StackingConfig {
         stackableTypes.add(EntityType.CREEPER);
         stackableTypes.add(EntityType.IRON_GOLEM);
 
+        voidAboveStackLimitMobs = config.getBoolean("voidAboveStackLimitMobs");
         maxStackCount = config.getInt("maxStackCount");
         schedulerTiming = config.getInt("schedulerTiming");
         stackDistance = config.getDouble("stackDistance");
@@ -48,4 +50,6 @@ public class StackingConfig {
     public double getSpawnerYDistance() { return spawnerYDistance; }
 
     public double getSpawnerZDistance() { return spawnerZDistance; }
+
+    public boolean isVoidAboveStackLimitMobs() { return voidAboveStackLimitMobs; }
 }

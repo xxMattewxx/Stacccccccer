@@ -1,8 +1,7 @@
 package com.nftworlds.stacccccccer.models;
 
-import com.nftworlds.stacccccccer.utils.Helper;
 import org.bukkit.entity.Entity;
-import org.apache.commons.lang.WordUtils;
+import com.nftworlds.stacccccccer.utils.Helper;
 
 public class StackableEntity {
     private int count;
@@ -16,6 +15,15 @@ public class StackableEntity {
         updateName();
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+        updateName();
+    }
+
     public void increaseCount(int amount) {
         count += amount;
         updateName();
@@ -23,10 +31,6 @@ public class StackableEntity {
 
     private void updateName() {
         getEntity().setCustomName(String.format("§l§6%s §f(%d)", Helper.getFriendlyNameForType(getEntity().getType()), count));
-    }
-
-    public int getCount() {
-        return count;
     }
 
     public Entity getEntity() {

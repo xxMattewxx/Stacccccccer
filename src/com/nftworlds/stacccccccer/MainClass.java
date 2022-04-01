@@ -13,7 +13,8 @@ public class MainClass extends JavaPlugin {
 
     private void setupConfig() {
         FileConfiguration config = getConfig();
-        config.addDefault("maxStackCount", 20000);
+        config.addDefault("voidAboveStackLimitMobs", false);
+        config.addDefault("maxStackCount", 500);
         config.addDefault("schedulerTiming", 40);
         config.addDefault("stackDistance", 3);
 

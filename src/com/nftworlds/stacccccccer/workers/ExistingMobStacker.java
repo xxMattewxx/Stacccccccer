@@ -31,10 +31,20 @@ public class ExistingMobStacker extends BukkitRunnable {
                 StackableEntity candidateStackableEntity = stackingManager.getStackableEntityByID(nearbyEntity.getEntityId());
                 if(candidateStackableEntity == null) continue;
 
-                if(candidateStackableEntity.getCount() + stackableEntity.getCount() >= stackingConfig.getMaxStackCount()) continue;
-                if(candidateStackableEntity.getCount() <= stackableEntity.getCount()) continue; //higher count entity gets stacked on
                 if(stackableEntity.getEntity().getType() != candidateStackableEntity.getEntity().getType()) continue; //only stack same types
+                if(candidateStackableEntity.getCount() < stackableEntity.getCount()) continue; //higher count entity gets stacked on
                 if(processedEntities.contains(candidateStackableEntity)) continue;
+
+                if(candidateStackableEntity.getCount() + stackableEntity.getCount() >= stackingConfig.getMaxStackCount()) {
+                    if(stackingConfig.isVoidAboveStackLimitMobs()) {
+                        candidateStackableEntity.setCount(stackingConfig.getMaxStackCount());
+                        entitiesToFree.add(stackableEntity);
+                        processedEntities.add(stackableEntity);
+                        break;
+                    }
+                    else
+                        continue;
+                };
 
                 entitiesToFree.add(stackableEntity);
                 processedEntities.add(stackableEntity);
